@@ -3,9 +3,7 @@
 cd /tmp
 sudo amazon-linux-extras install java-openjdk11
 
-ssh_public_key = ""
-
-echo $ssh_public_key >> /home/ec2-user/.ssh/authorized_keys
+echo "" >> /home/ec2-user/.ssh/authorized_keys
 
 wget https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar
 
