@@ -9,7 +9,6 @@ wget https://launcher.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec167
 
 mkdir /home/ec2-user/minecraft
 mv ./server.jar /home/ec2-user/minecraft/
-
 echo "eula=true" > /home/ec2-user/minecraft/eula.txt
 
 echo "[Unit]" >> /etc/systemd/system/minecraft.service
@@ -21,7 +20,8 @@ echo "Type=Forking" >> /etc/systemd/system/minecraft.service
 echo "User=root" >> /etc/systemd/system/minecraft.service
 echo "Restart=on-failure" >> /etc/systemd/system/minecraft.service
 echo "RestartSec=20 5" >> /etc/systemd/system/minecraft.service
-echo "ExecStart=/usr/bin/java -Xms1536M -Xmx1536M -jar server.jar nogui" >> /etc/systemd/system/minecraft.service
+echo "RemainAfterExit=yes" >> /etc/systemd/system/minecraft.service
+echo "ExecStart=/usr/bin/screen -L -dm java -Xms1536M -Xmx1536M -jar server.jar nogui" >> /etc/systemd/system/minecraft.service
 echo "[Install]" >> /etc/systemd/system/minecraft.service
 echo "WantedBy=multi-user.target" >> /etc/systemd/system/minecraft.service
 

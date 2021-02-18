@@ -14,7 +14,7 @@ provider "aws" {
 
 resource "aws_instance" "minecraft_server" {
   ami                         = "ami-04f77aa5970939148"
-  instance_type               = "t2.large"
+  instance_type               = "t2.medium"
   associate_public_ip_address = true
   security_groups = [
     aws_security_group.allow_minecraft.name
