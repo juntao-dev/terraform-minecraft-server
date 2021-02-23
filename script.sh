@@ -25,7 +25,7 @@ echo "ExecStart=/usr/bin/screen -L -dm java -Xms1536M -Xmx1536M -jar server.jar 
 echo "[Install]" >> /etc/systemd/system/minecraft.service
 echo "WantedBy=multi-user.target" >> /etc/systemd/system/minecraft.service
 
-echo "* * * * * tar -czvf /tmp/world.tar.gz /home/ec2-user/minecraft/world" >> /var/spool/cron/root
-echo "*/5 * * * * aws s3api put-object --bucket ${bucket_name} --key world.tar.gz --body /tmp/world.tar.gz" >> /var/spool/cron/root
+echo "*/10 * * * * tar -czvf /tmp/world.tar.gz /home/ec2-user/minecraft/world" >> /var/spool/cron/root
+echo "*/15 * * * * aws s3api put-object --bucket ${bucket_name} --key world.tar.gz --body /tmp/world.tar.gz" >> /var/spool/cron/root
 
 systemctl start minecraft
