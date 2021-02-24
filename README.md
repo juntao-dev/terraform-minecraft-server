@@ -56,8 +56,11 @@ When finished, run the following command to destroy the stack (replace `<s3_buck
 
 If an error shows up saying that the bucket is not empty, run both commands again.
 
+Note: replace `<s3_bucket_name>` with your bucket name (x2) before running the following commands.
+
 ```sh
-aws s3 rm --recursive s3://<s3_bucket_name>
+
+aws s3api list-object-versions --bucket <s3_bucket_name> --prefix world | grep VersionId | cut -f4 -d \" | xargs -I % aws s3api delete-object --bucket <s3_bucket_name> --key world.tar.gz --version-id %
 
 terraform destroy
 ```
