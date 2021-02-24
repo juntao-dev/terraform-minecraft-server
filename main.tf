@@ -80,6 +80,13 @@ resource "aws_s3_bucket" "minecraft_world_data_backup_bucket" {
     enabled = true
   }
 
+  lifecycle_rule {
+    enabled = true
+    noncurrent_version_expiration {
+      days = 1
+    }
+  }
+
   # Enable server-side encryption by default
   server_side_encryption_configuration {
     rule {
