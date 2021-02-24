@@ -76,6 +76,10 @@ resource "aws_s3_bucket" "minecraft_world_data_backup_bucket" {
   bucket = local.minecraft_backup_s3_bucket_name
   acl    = "private"
 
+  versioning {
+    enabled = true
+  }
+
   # Enable server-side encryption by default
   server_side_encryption_configuration {
     rule {
